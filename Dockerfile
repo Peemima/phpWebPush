@@ -11,7 +11,7 @@ COPY . .
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Update the Apache configuration to use the root directory as DocumentRoot
-RUN sed -i 's|DocumentRoot /var/www/html/public|DocumentRoot /|' /etc/apache2/apache2.conf
+RUN sed -i 's|DocumentRoot / /|' /etc/apache2/apache2.conf
 
 # Expose port 80
 EXPOSE 80
