@@ -2,7 +2,7 @@
 FROM php:7.4-apache
 
 # Set the working directory in the container
-WORKDIR /var/www/html
+WORKDIR /
 
 # Copy the application code into the container
 COPY . .
@@ -10,8 +10,8 @@ COPY . .
 # Install required PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Set the document root for Apache
-RUN echo "DocumentRoot /var/www/html/public" >> /etc/apache2/apache2.conf
+# Update the Apache configuration to use the root directory as DocumentRoot
+RUN sed -i 's|DocumentRoot /var/www/html/public|DocumentRoot /|' /etc/apache2/apache2.conf
 
 # Expose port 80
 EXPOSE 80
